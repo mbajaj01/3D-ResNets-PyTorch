@@ -5,17 +5,20 @@ def parse_opts():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--root_path',
-        default='/root/data/ActivityNet',
+        #default='/root/data/ActivityNet',
+        default='data',
         type=str,
         help='Root directory path of data')
     parser.add_argument(
         '--video_path',
-        default='video_kinetics_jpg',
+        #default='video_kinetics_jpg',
+        default='jpg_videos',
         type=str,
         help='Directory path of Videos')
     parser.add_argument(
         '--annotation_path',
-        default='kinetics.json',
+        #default='kinetics.json',
+        default='activitynet.json',
         type=str,
         help='Annotation file path')
     parser.add_argument(
@@ -25,12 +28,13 @@ def parse_opts():
         help='Result directory path')
     parser.add_argument(
         '--dataset',
-        default='kinetics',
+        default='activitynet',
+        #default='kinetics',
         type=str,
         help='Used dataset (activitynet | kinetics | ucf101 | hmdb51)')
     parser.add_argument(
         '--n_classes',
-        default=400,
+        default=200,
         type=int,
         help=
         'Number of classes (activitynet: 200, kinetics: 400, ucf101: 101, hmdb51: 51)'
@@ -181,7 +185,7 @@ def parse_opts():
     parser.set_defaults(no_softmax_in_test=False)
     parser.add_argument(
         '--no_cuda', action='store_true', help='If true, cuda is not used.')
-    parser.set_defaults(no_cuda=False)
+    parser.set_defaults(no_cuda=True)
     parser.add_argument(
         '--n_threads',
         default=4,

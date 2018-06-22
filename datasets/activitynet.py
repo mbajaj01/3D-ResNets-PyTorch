@@ -117,9 +117,12 @@ def make_dataset(root_path, annotation_path, subset, n_samples_for_each_video,
             print('dataset loading [{}/{}]'.format(i, len(video_names)))
 
         video_path = os.path.join(root_path, video_names[i])
+        found = 0
+        print(video_path)
         if not os.path.exists(video_path):
             continue
-
+        ++found
+        print("******************loading ...")
         fps_file_path = os.path.join(video_path, 'fps')
         fps = load_value_file(fps_file_path)
 
@@ -145,6 +148,7 @@ def make_dataset(root_path, annotation_path, subset, n_samples_for_each_video,
                 frame_indices = list(range(begin_t, end_t))
                 frame_indices = modify_frame_indices(sample['video'],
                                                      frame_indices)
+                print("frames: ",len(frame_indices))
                 if len(frame_indices) < 16:
                     continue
                 sample['frame_indices'] = frame_indices
@@ -165,7 +169,7 @@ def make_dataset(root_path, annotation_path, subset, n_samples_for_each_video,
                         continue
                     sample_j['frame_indices'] = frame_indices
                     dataset.append(sample_j)
-
+    print("found....:",found) 
     return dataset, idx_to_class
 
 
@@ -187,6 +191,7 @@ def make_untrimmed_dataset(root_path, annotation_path, subset,
 
     dataset = []
     for i in range(len(video_names)):
+        print("loading2 ...")
         if i % 1000 == 0:
             print('dataset loading [{}/{}]'.format(i, len(video_names)))
 
