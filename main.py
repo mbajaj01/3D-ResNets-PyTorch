@@ -159,4 +159,5 @@ if __name__ == '__main__':
             shuffle=False,
             num_workers=opt.n_threads,
             pin_memory=True)
+        print("testloader: ", len(test_loader))
         test.test(test_loader, model, opt, test_data.class_names)
